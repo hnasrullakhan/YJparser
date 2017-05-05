@@ -20,7 +20,7 @@ type Swagger struct{
 	Definitions json.RawMessage
 }
 
-
+var Defs []Definitionsprops
 type Definitionsprops struct {
 	name string
 	Properties map[string]interface{} `json:"properties"`
@@ -112,9 +112,24 @@ func main() {
 			vardef.indprop = append(vardef.indprop, tmpProperty)
 
 		}
-	}
-	//var propertymap map[string]json.RawMessage
+		Defs = append(Defs,vardef)
 
+	}
+	fmt.Println("**************************************************************")
+	fmt.Println("**************************************************************")
+	fmt.Println("**************************************************************")
+	fmt.Println("**************************************************************")
+
+	//var propertymap map[string]json.RawMessage
+	for iter := range Defs{
+		fmt.Println(Defs[iter].name)
+		fmt.Println(Defs[iter].Properties)
+		fmt.Println(Defs[iter].indprop)
+
+
+		fmt.Println("**************************************************************")
+
+	}
 	fmt.Print(err2)
 
 
