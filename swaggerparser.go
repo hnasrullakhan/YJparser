@@ -24,6 +24,7 @@ var Defs []Definitionsprops
 type Definitionsprops struct {
 	name string
 	Properties map[string]interface{} `json:"properties"`
+	//Properties map[string]json.RawMessage  `json:"properties"`
 	indprop []property
 	//ppty []*property
 
@@ -31,11 +32,12 @@ type Definitionsprops struct {
 
 type property struct {
 	Name string
-	Type string
-	Format string
-	Items interface{}
-	Enum interface{}
-	Default bool
+	Type string	`json:"type"`
+	Format string	`json:"format"`
+	Items interface{}	`json:"items"`
+	Enum interface{}	`json:"enums"`
+	Refs string 		`json:"$refs"`
+	Default bool		`json:"default"`
 
 }
 func main() {
@@ -76,6 +78,22 @@ func main() {
 
 		for key, val := range vardef.Properties {
 			lname := key
+			/*var tmpProp property
+			_ = json.Unmarshal(val, &tmpProp )
+			tmpProp.Name = lname
+			fmt.Println("================================")
+
+			vardef.indprop = append(vardef.indprop, tmpProp)
+			fmt.Println("Name:",tmpProp.Name)
+			fmt.Println("Type:",tmpProp.Type)
+			fmt.Println("Format:",tmpProp.Format)
+			fmt.Println("Enum:",tmpProp.Enum)
+			fmt.Println("Items:",tmpProp.Items)
+			fmt.Println("Default:",tmpProp.Default)
+
+			fmt.Println("================================")*/
+
+
 			ltype := val.(map[string]interface{})["type"]
 			if ltype == nil {
 				ltype = ""
@@ -97,6 +115,10 @@ func main() {
 			if lDefault == nil {
 				lDefault = false
 			}
+			lRefs := val.(map[string]interface{})["$ref"]
+			if lRefs == nil {
+				lRefs = ""
+			}
 			fmt.Println("================================")
 			fmt.Println("new property")
 			fmt.Println("Name:", lname)
@@ -104,10 +126,11 @@ func main() {
 			fmt.Println("Format:", lFormat)
 			fmt.Println("Items:", lItems)
 			fmt.Println("Enum:", lEnum)
+			fmt.Println("Refs:", lRefs)
 			fmt.Println("Default:", lDefault)
 			fmt.Println("================================")
 
-			tmpProperty := property{Name:string(lname), Type:ltype.(string), Format:lFormat.(string), Items:lItems, Enum:lEnum, Default:lDefault.(bool)}
+			tmpProperty := property{Name:string(lname), Type:ltype.(string), Format:lFormat.(string), Items:lItems, Enum:lEnum,Refs:lRefs.(string), Default:lDefault.(bool)}
 
 			vardef.indprop = append(vardef.indprop, tmpProperty)
 
