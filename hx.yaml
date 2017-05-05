@@ -1,0 +1,5 @@
+---
+source_dir: swagger-webapp.yaml
+relationships:
+  - name: about
+  - name: summary
