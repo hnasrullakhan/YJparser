@@ -1,4 +1,22 @@
 ---
-{{range $defs := .Defs}}
-  {{ $defs.Name}}
-{{end}}
+model:
+  packages:
+  {{- range $defs := .Defs -}}
+    {{- $defsName := $defs.Name }}
+    - name: {{ $defsName }}
+      concrete: yes
+      apimethods:
+        - name: GET
+        - name: POST
+        - name: DELETE
+      properties:
+      {{- range $indprop := $defs.Indprop -}}
+       {{- $indpropName := $indprop.Name }}
+       {{- $indpropType := $indprop.Type }}
+        - name: {{$indpropName }}
+          type: {{$indpropType }}
+          apiaccess: readonly
+       {{end}}
+
+    {{end}}
+

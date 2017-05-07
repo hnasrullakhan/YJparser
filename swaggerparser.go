@@ -29,12 +29,12 @@ type Definitionsprops struct {
 	Type string
 	Properties map[string]interface{} `json:"properties"`
 	//Properties map[string]json.RawMessage  `json:"properties"`
-	indprop []property
+	Indprop []Property
 	//ppty []*property
 
 }
 
-type property struct {
+type Property struct {
 	Name string
 	Type string	`json:"type"`
 	Format string	`json:"format"`
@@ -62,7 +62,7 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte){
 		tmpProp.Name = lname
 		fmt.Println("================================")
 
-		vardef.indprop = append(vardef.indprop, tmpProp)
+		vardef.Indprop = append(vardef.Indprop, tmpProp)
 		fmt.Println("Name:",tmpProp.Name)
 		fmt.Println("Type:",tmpProp.Type)
 		fmt.Println("Format:",tmpProp.Format)
@@ -136,9 +136,9 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte){
 		fmt.Println("Default:", lDefault)
 		fmt.Println("================================")
 
-		tmpProperty := property{Name:string(lname), Type:ltype.(string), Format:lFormat.(string), Items:lItems, Enum:lEnum,Refs:lRefs.(string), Default:lDefault.(bool)}
+		tmpProperty := Property{Name:string(lname), Type:ltype.(string), Format:lFormat.(string), Items:lItems, Enum:lEnum,Refs:lRefs.(string), Default:lDefault.(bool)}
 
-		vardef.indprop = append(vardef.indprop, tmpProperty)
+		vardef.Indprop = append(vardef.Indprop, tmpProperty)
 
 	}
 	Swag.Defs = append(Swag.Defs,&vardef)
@@ -254,7 +254,7 @@ func main() {
 	for iter := range Swag.Defs{
 		fmt.Println(Swag.Defs[iter].Name)
 		fmt.Println(Swag.Defs[iter].Properties)
-		fmt.Println(Swag.Defs[iter].indprop)
+		fmt.Println(Swag.Defs[iter].Indprop)
 
 
 		fmt.Println("**************************************************************")

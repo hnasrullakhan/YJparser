@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bf250b2-2ab5-4703-9ed7-015b24f90c9d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model.gotmpl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GenModel/ModelGen.yaml" afterPath="$PROJECT_DIR$/GenModel/ModelGen.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model.gotmpl" afterPath="$PROJECT_DIR$/Model.gotmpl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/swaggerparser.go" afterPath="$PROJECT_DIR$/swaggerparser.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,11 +17,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="swaggerparser.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="swaggerparser.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/swaggerparser.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="12" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="12" />
+            <state relative-caret-position="52">
+              <caret line="31" column="15" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="15" />
               <folding>
                 <element signature="e#14#151#0" expanded="true" />
               </folding>
@@ -31,8 +32,18 @@
       <file leaf-file-name="ModelGen.yaml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GenModel/ModelGen.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="198">
+              <caret line="132" column="24" lean-forward="false" selection-start-line="132" selection-start-column="16" selection-end-line="132" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="swagger_webapp.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/swagger_webapp.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="3764" column="19" lean-forward="false" selection-start-line="3764" selection-start-column="9" selection-end-line="3764" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -41,8 +52,8 @@
       <file leaf-file-name="Model.gotmpl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Model.gotmpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="22" lean-forward="false" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+            <state relative-caret-position="240">
+              <caret line="16" column="30" lean-forward="false" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -51,8 +62,8 @@
       <file leaf-file-name="hx.yaml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hx.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="3" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="3" />
+            <state relative-caret-position="60">
+              <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -77,9 +88,13 @@
       <find>definitionsprops</find>
       <find>================================</find>
       <find>Panic</find>
+      <find>indprop</find>
+      <find>array</find>
+      <find>messages&quot;:</find>
     </findStrings>
     <replaceStrings>
       <replace>Print</replace>
+      <replace>Indprop</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -646,35 +661,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hx.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="3" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GenModel/ModelGen.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="60">
+          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model.gotmpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="22" lean-forward="false" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+        <state relative-caret-position="240">
+          <caret line="16" column="30" lean-forward="false" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/swaggerparser.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="12" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="12" />
+        <state relative-caret-position="52">
+          <caret line="31" column="15" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="15" />
           <folding>
             <element signature="e#14#151#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GenModel/ModelGen.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="132" column="24" lean-forward="false" selection-start-line="132" selection-start-column="16" selection-end-line="132" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/swagger_webapp.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="3764" column="19" lean-forward="false" selection-start-line="3764" selection-start-column="9" selection-end-line="3764" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
