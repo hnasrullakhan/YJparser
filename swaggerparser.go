@@ -41,8 +41,15 @@ type Property struct {
 	Items interface{}	`json:"items"`
 	Enum interface{}	`json:"enums"`
 	Refs string 		`json:"$refs"`
+	AdditionalProperties  AdditionalProps	`json:additionalProperties`
 	Default bool		`json:"default"`
 
+}
+
+type AdditionalProps struct{
+	Type string
+	Refs string
+	Items interface{}
 }
 
 func ParseDefintions( aInDefintionName string, jsonRawDef []byte){
@@ -57,21 +64,6 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte){
 
 	for key, val := range vardef.Properties {
 		lname := key
-		/*var tmpProp property
-		_ = json.Unmarshal(val, &tmpProp )
-		tmpProp.Name = lname
-		fmt.Println("================================")
-
-		vardef.Indprop = append(vardef.Indprop, tmpProp)
-		fmt.Println("Name:",tmpProp.Name)
-		fmt.Println("Type:",tmpProp.Type)
-		fmt.Println("Format:",tmpProp.Format)
-		fmt.Println("Enum:",tmpProp.Enum)
-		fmt.Println("Items:",tmpProp.Items)
-		fmt.Println("Default:",tmpProp.Default)
-
-		fmt.Println("================================")*/
-
 
 		ltype := val.(map[string]interface{})["type"]
 		if ltype == nil {
@@ -120,10 +112,50 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte){
 			fmt.Println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxTHISISCHILDxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 
 			ParseDefintions(defintion[1],def)
+			ltype = defintion[1]
 			fmt.Println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxCHILDENDSHERExxxxxxxxxxxxxxxxxxxxxxxxxxx")
 
 		}else{
 			lRefs = ""
+		}
+		var lAddProps AdditionalProps
+		tmpAddProps := val.(map[string]interface{})["additionalProperties"]
+		if tmpAddProps != nil {
+			tmpProp := tmpAddProps.(map[string]interface{})["type"]
+			if (tmpProp.(string) == "object" || tmpProp.(string) == "array" ){
+
+				lAddProps.Type = tmpProp.(string)
+
+			}
+
+			tmpProp = tmpAddProps.(map[string]interface{})["$refs"]
+			if tmpProp != nil {
+				lAddProps.Refs = tmpProp.(string)
+
+			}else{
+				lAddProps.Refs =""
+			}
+			tmpProp = tmpAddProps.(map[string]interface{})["items"]
+			if tmpProp != nil {
+				fmt.Println("lItems:",tmpProp)
+				for keyItem,valItem := range (tmpProp).(map[string]interface{}) {
+
+					if keyItem == "$ref"{
+						defintion := strings.SplitAfter((valItem.(string)), "#/definitions/")
+						fmt.Println(defintion[1])
+						//lAddProps.Type
+						//fmt.Printf( "The defintion %s \n", (swag.Definitions));
+						def, _, _, _ := jsonparser.Get(Swag.Definitions, defintion[1])
+						fmt.Println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxTHISISCHILDxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+
+						ParseDefintions(defintion[1],def)
+						fmt.Println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxCHILDENDSHERExxxxxxxxxxxxxxxxxxxxxxxxxxx")
+
+					}
+				}
+			}else{
+				lAddProps.Items = ""
+			}
 		}
 		fmt.Println("================================")
 		fmt.Println("new property")
@@ -134,6 +166,8 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte){
 		fmt.Println("Enum:", lEnum)
 		fmt.Println("Refs:", lRefs)
 		fmt.Println("Default:", lDefault)
+		fmt.Println("lAddProps:", tmpAddProps)
+
 		fmt.Println("================================")
 
 		tmpProperty := Property{Name:string(lname), Type:ltype.(string), Format:lFormat.(string), Items:lItems, Enum:lEnum,Refs:lRefs.(string), Default:lDefault.(bool)}
@@ -233,6 +267,13 @@ func main() {
 		fmt.Println(string(meta.Relationships[i].Name))
 
 		v, _, _, _ := jsonparser.Get(Swag.Paths, "/" + meta.Relationships[i].Name, "get", "responses", "200", "schema", "$ref")
+		if string(v) == "" {
+			it, _, _, _ := jsonparser.Get(Swag.Paths, "/" + meta.Relationships[i].Name, "get", "responses", "200", "schema", "type")
+			if string(it) == "array"{
+
+				v, _, _, _ = jsonparser.Get(Swag.Paths, "/" + meta.Relationships[i].Name, "get", "responses", "200", "schema", "items","$ref")
+			}
+		}
 		fmt.Printf("%s\n", string(v))
 		fmt.Println("================================")
 		defintion := strings.SplitAfter(string(v), "#/definitions/")
@@ -245,6 +286,7 @@ func main() {
 
 
 	}
+	/*
 	fmt.Println("**************************************************************")
 	fmt.Println("**************************************************************")
 	fmt.Println("**************************************************************")
@@ -259,7 +301,7 @@ func main() {
 
 		fmt.Println("**************************************************************")
 
-	}
+	}*/
 	generateModel(Swag)
 	fmt.Print(err2)
 
