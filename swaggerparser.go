@@ -51,6 +51,20 @@ type AdditionalProps struct{
 	Refs string
 	Items interface{}
 }
+func HandleRefs(aInRefVal string,aInDefName string) string{
+
+	defintion := strings.SplitAfter(aInRefVal, "#/definitions/")
+	fmt.Println(defintion[1])
+	//fmt.Printf( "The defintion %s \n", (swag.Definitions));
+	def, _, _, _ := jsonparser.Get(Swag.Definitions, defintion[1])
+	if defintion[1] == aInDefName {
+		fmt.Println("This will cause loop")
+		return defintion[1]
+	}
+
+	ParseDefintions(defintion[1],def,defintion[1])
+	return defintion[1]
+}
 
 func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetName string){
 
@@ -91,8 +105,16 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 		if lItems != nil {
 			fmt.Println("lItems:",lItems)
 			for keyItem,valItem := range (lItems).(map[string]interface{}) {
-
+				if keyItem == "type"{
+					if ltype == "array"{
+						ltype = "Collection("+valItem.(string)+")"
+					}else{
+						ltype = valItem.(string)
+					}
+				}
 				if keyItem == "$ref"{
+					parsedRefName := HandleRefs(valItem.(string),vardef.Name)
+/*
 					defintion := strings.SplitAfter((valItem.(string)), "#/definitions/")
 					fmt.Println(defintion[1])
 					//fmt.Printf( "The defintion %s \n", (swag.Definitions));
@@ -103,14 +125,12 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 					}
 					fmt.Println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxTHISISCHILDxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 
-					ParseDefintions(defintion[1],def,defintion[1])
+					ParseDefintions(defintion[1],def,defintion[1])*/
 					if ltype == "array"{
-						ltype = "Collection("+defintion[1]+")"
+						ltype = "Collection("+parsedRefName+")"
 					}else{
-						ltype = defintion[1]
+						ltype = parsedRefName
 					}
-
-					fmt.Println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxCHILDENDSHERExxxxxxxxxxxxxxxxxxxxxxxxxxx")
 
 				}
 			}
@@ -127,7 +147,9 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 		}
 		lRefs := val.(map[string]interface{})["$ref"]
 		if lRefs != nil {
-			defintion := strings.SplitAfter((lRefs).(string), "#/definitions/")
+			parsedRefName := HandleRefs(lRefs.(string),vardef.Name)
+
+			/*defintion := strings.SplitAfter((lRefs).(string), "#/definitions/")
 			fmt.Println(defintion[1])
 			//fmt.Printf( "The defintion %s \n", (swag.Definitions));
 			def, _, _, _ := jsonparser.Get(Swag.Definitions, defintion[1])
@@ -138,8 +160,8 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 			fmt.Println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxTHISISCHILDxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 
 			ParseDefintions(defintion[1],def,defintion[1])
-			ltype = defintion[1]
-			fmt.Println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxCHILDENDSHERExxxxxxxxxxxxxxxxxxxxxxxxxxx")
+			ltype = defintion[1]*/
+			ltype = parsedRefName
 
 		}else{
 			lRefs = ""
@@ -149,25 +171,31 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 			fmt.Println("Add Props:",lAddProps)
 			var tmpAddType string
 			for keyItem,valItem := range (lAddProps).(map[string]interface{}) {
-				if keyItem == "array" {
-					tmpAddType = "array"
-				}else{
-					tmpAddType = ""
+				if keyItem =="type"{
+					if valItem.(string) != ""{
+						tmpAddType = valItem.(string)
+					}else{
+						tmpAddType = ""
+					}
 				}
+
 				if keyItem == "items" {
 					for k,v := range (valItem).(map[string]interface{}) {
 						if k == "$ref"{
+							parsedRefName := HandleRefs(v.(string),vardef.Name)
+/*
 							defintion := strings.SplitAfter((v.(string)), "#/definitions/")
 							def, _, _, _ := jsonparser.Get(Swag.Definitions, defintion[1])
 							if defintion[1] == vardef.Name {
 								fmt.Println("This will cause loop")
 								return
 							}
-							ParseDefintions(defintion[1],def,defintion[1])
+							ParseDefintions(defintion[1],def,defintion[1])*/
+
 							if tmpAddType == "array"{
-								ltype = "Collection("+defintion[1]+")"
+								tmpAddType = "Collection("+parsedRefName+")"
 							}else{
-								ltype = defintion[1]
+								tmpAddType = parsedRefName
 							}
 
 						}
@@ -175,6 +203,8 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 					}
 				}
 				if keyItem == "$ref"{
+					parsedRefName := HandleRefs(valItem.(string),vardef.Name)
+/*
 					defintion := strings.SplitAfter((valItem.(string)), "#/definitions/")
 					fmt.Println(defintion[1])
 					//fmt.Printf( "The defintion %s \n", (swag.Definitions));
@@ -186,21 +216,23 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 					fmt.Println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxTHISISCHILDxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 
 					ParseDefintions(defintion[1],def,defintion[1])
+					*/
 					if tmpAddType == "array"{
-						ltype = "Collection("+defintion[1]+")"
+						tmpAddType = "Collection("+parsedRefName+")"
 					}else{
-						ltype = defintion[1]
+						tmpAddType =parsedRefName
 					}
 
-					fmt.Println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxCHILDENDSHERExxxxxxxxxxxxxxxxxxxxxxxxxxx")
-
-				}			}
+				}
+			}
+			if ltype == "object"{
+				ltype = tmpAddType
+			}
 
 		}
 
 		fmt.Println("================================")
-		fmt.Println("new property")
-		fmt.Println("Name:", lname)
+		fmt.Println("Property Name:", lname)
 		fmt.Println("Type:", ltype)
 		fmt.Println("Format:", lFormat)
 		fmt.Println("Items:", lItems)
@@ -216,22 +248,6 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 		vardef.Indprop = append(vardef.Indprop, tmpProperty)
 
 	}
-	// iterate over the array to avoid adding same Defintion again
-	/*if (len(Swag.Defs)  == 0) {
-		Swag.Defs = append(Swag.Defs,&vardef)
-		fmt.Println("Defs Appended:",vardef.Name)
-
-	}else if (len(Swag.Defs)  > 0) {
-		for i := range (Swag.Defs){
-			if vardef.Name != Swag.Defs[i].Name {
-				Swag.Defs = append(Swag.Defs,&vardef)
-				fmt.Println("Defs Appended:",vardef.Name)
-
-			}else {
-				fmt.Println(vardef.Name,"This defintion already added")
-			}
-		}
-	}*/
 
 	Swag.Defs = append(Swag.Defs,&vardef)
 
