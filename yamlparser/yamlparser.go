@@ -12,7 +12,9 @@ type Model struct{
 }
 
 type Relations struct {
-	Name string
+	SourceName string	`yaml:"sourceName"`
+	TargetName string	`yaml:"targetName"`
+	Usage string		`yaml:"usage`
 }
 
 func ParseYaml(mod *Model) {
@@ -36,6 +38,10 @@ func ParseYaml(mod *Model) {
 	fmt.Println( "// loop over array of structs of Relations" )
 	fmt.Printf( "The Model '%s\n", mod.Source_dir  );
 	for k := range mod.Relationships {
-		fmt.Printf( "The name %s \n", mod.Relationships[k].Name);
+		fmt.Printf( "The Source name %s \n", mod.Relationships[k].SourceName);
+		fmt.Printf( "The Target name %s \n", mod.Relationships[k].TargetName);
+		fmt.Printf( "The Target name %s \n", mod.Relationships[k].Usage);
+
+
 	}
 }
