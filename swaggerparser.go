@@ -17,9 +17,8 @@ import (
 
 type Swagger struct{
 	SwagVersion string   `json:"swagger"`
+	Package string
 	Paths json.RawMessage
-	//Paths  map[string]interface{} `json:"paths"`
-	//Definitions  map[string]interface{}  `json:"definitions"`
 	Definitions json.RawMessage
 	Defs []*Definitionsprops
 }
@@ -28,9 +27,7 @@ type Definitionsprops struct {
 	Name string
 	Type string
 	Properties map[string]interface{} `json:"properties"`
-	//Properties map[string]json.RawMessage  `json:"properties"`
 	Indprop []Property
-	//ppty []*property
 
 }
 
@@ -55,7 +52,6 @@ func HandleRefs(aInRefVal string,aInDefName string) string{
 
 	defintion := strings.SplitAfter(aInRefVal, "#/definitions/")
 	fmt.Println(defintion[1])
-	//fmt.Printf( "The defintion %s \n", (swag.Definitions));
 	def, _, _, _ := jsonparser.Get(Swag.Definitions, defintion[1])
 	if defintion[1] == aInDefName {
 		fmt.Println("This will cause loop")
@@ -80,7 +76,6 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 			}
 		}
 	}
-	//vardef.Name = aInDefintionName
 	vardef.Name = aInMetaTargetName
 
 	vardef.Type = "object"
@@ -331,12 +326,12 @@ func main() {
 		fmt.Printf("File error: %v\n", err1)
 		os.Exit(1)
 	}
-	//var swag *Swagger
 	err2 := json.Unmarshal(file,&Swag)
 	fmt.Printf("this is swag value : %s \n",Swag.SwagVersion)
 	fmt.Println("================================")
 	meta := yamlparser.Model{}
 	yamlparser.ParseYaml(&meta)
+	Swag.Package = meta.Package
 	fmt.Println(meta)
 	for i := range meta.Relationships {
 		fmt.Println(string(meta.Relationships[i].SourceName))
@@ -353,30 +348,12 @@ func main() {
 		fmt.Println("================================")
 		defintion := strings.SplitAfter(string(v), "#/definitions/")
 		fmt.Println(defintion[1])
-		//fmt.Printf( "The defintion %s \n", (swag.Definitions));
 		def, _, _, _ := jsonparser.Get(Swag.Definitions, defintion[1])
 
 		ParseDefintions(defintion[1],def,meta.Relationships[i].TargetName)
-		//fmt.Println(string(def))
 
 
 	}
-	/*
-	fmt.Println("**************************************************************")
-	fmt.Println("**************************************************************")
-	fmt.Println("**************************************************************")
-	fmt.Println("**************************************************************")
-
-	//var propertymap map[string]json.RawMessage
-	for iter := range Swag.Defs{
-		fmt.Println(Swag.Defs[iter].Name)
-		fmt.Println(Swag.Defs[iter].Properties)
-		fmt.Println(Swag.Defs[iter].Indprop)
-
-
-		fmt.Println("**************************************************************")
-
-	}*/
 	generateModel(Swag)
 	fmt.Print(err2)
 

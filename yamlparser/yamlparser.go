@@ -8,6 +8,7 @@ import (
 )
 type Model struct{
 	Source_dir string
+	Package string
 	Relationships	[]Relations
 }
 
@@ -37,6 +38,8 @@ func ParseYaml(mod *Model) {
 
 	fmt.Println( "// loop over array of structs of Relations" )
 	fmt.Printf( "The Model '%s\n", mod.Source_dir  );
+	fmt.Printf( "The Package '%s\n", mod.Package  );
+
 	for k := range mod.Relationships {
 		fmt.Printf( "The Source name %s \n", mod.Relationships[k].SourceName);
 		fmt.Printf( "The Target name %s \n", mod.Relationships[k].TargetName);
