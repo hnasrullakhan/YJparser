@@ -17,6 +17,8 @@ import (
 
 type Swagger struct{
 	SwagVersion string   `json:"swagger"`
+	ObjectsFlag bool
+	ApiTypeFlag bool
 	Package string
 	Paths json.RawMessage
 	Definitions json.RawMessage
@@ -335,6 +337,8 @@ func main() {
 	meta := yamlparser.Model{}
 	yamlparser.ParseYaml(&meta)
 	Swag.Package = meta.Package
+	Swag.ObjectsFlag = false
+	Swag.ApiTypeFlag = false
 	fmt.Println(meta)
 	for i := range meta.Objects {
 		fmt.Println(string(meta.Objects[i].SourceName))
@@ -352,32 +356,20 @@ func main() {
 		defintion := strings.SplitAfter(string(v), "#/definitions/")
 		fmt.Println(defintion[1])
 		def, _, _, _ := jsonparser.Get(Swag.Definitions, defintion[1])
+		switch meta.Objects[i].Usage {
+		case "mo":
+			Swag.ObjectsFlag = true
+		case "type":
+			Swag.ApiTypeFlag = true
+		}
+		fmt.Println("object flag :", Swag.ObjectsFlag)
+		fmt.Println("api flag :", Swag.ApiTypeFlag)
+
 
 		ParseDefintions(defintion[1],def,meta.Objects[i].TargetName,meta.Objects[i].Usage)
 
 
 	}
-/*	for i := range meta.Apitypes {
-		fmt.Println(string(meta.Apitypes[i].SourceName))
-
-		v, _, _, _ := jsonparser.Get(Swag.Paths, "/" + meta.Apitypes[i].SourceName, "get", "responses", "200", "schema", "$ref")
-		if string(v) == "" {
-			it, _, _, _ := jsonparser.Get(Swag.Paths, "/" + meta.Apitypes[i].SourceName, "get", "responses", "200", "schema", "type")
-			if string(it) == "array"{
-
-				v, _, _, _ = jsonparser.Get(Swag.Paths, "/" + meta.Apitypes[i].SourceName, "get", "responses", "200", "schema", "items","$ref")
-			}
-		}
-		fmt.Printf("%s\n", string(v))
-		fmt.Println("================================")
-		defintion := strings.SplitAfter(string(v), "#/definitions/")
-		fmt.Println(defintion[1])
-		def, _, _, _ := jsonparser.Get(Swag.Definitions, defintion[1])
-
-		ParseDefintions(defintion[1],def,meta.Apitypes[i].TargetName,meta.Apitypes[i].Usage)
-
-
-	}*/
 	generateModel(Swag)
 	fmt.Print(err2)
 

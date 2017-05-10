@@ -2,6 +2,7 @@
 model:
   packages:
     - name: {{ .Package }}
+      {{if .ObjectsFlag -}}
       objects:
       {{ range $defs := .Defs -}}
       {{- if eq $defs.Usage "mo" -}}
@@ -20,8 +21,10 @@ model:
               type: {{$indpropType }}
               apiaccess: readonly
           {{end}}
-      {{end -}}
+      {{- end -}}
       {{end }}
+      {{end }}
+      {{ if .ApiTypeFlag -}}
       apitypes:
       {{ range $defs := .Defs -}}
       {{- if eq $defs.Usage "type" -}}
@@ -42,3 +45,4 @@ model:
           {{end}}
       {{end -}}
       {{end}}
+      {{end }}
