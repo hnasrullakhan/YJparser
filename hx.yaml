@@ -8,6 +8,6 @@ objects:
   - sourceName: virtplatform/alarms
     targetName: Alarm
     usage: mo
-  - sourceName: summary
-    targetName: Summary
+  - sourceName: appliances
+    targetName: Appliance
     usage: type

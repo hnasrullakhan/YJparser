@@ -28,7 +28,6 @@ var Swag Swagger
 type Definitionsprops struct {
 	Name string
 	Usage string
-	Type string
 	Properties map[string]interface{} `json:"properties"`
 	Indprop []Property
 
@@ -41,7 +40,7 @@ type Property struct {
 	Items interface{}	`json:"items"`
 	Enum interface{}	`json:"enums"`
 	Refs string 		`json:"$refs"`
-	AdditionalProperties  AdditionalProps	`json:additionalProperties`
+	AdditionalProperties  interface{}	`json:additionalProperties`
 	Default bool		`json:"default"`
 
 }
@@ -81,7 +80,6 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 	}
 	vardef.Name = aInMetaTargetName
 	vardef.Usage = usage
-	vardef.Type = "object"
 	fmt.Println(vardef)
 	//v,_,_,_ = jsonparser.Get(swag.Definitions,defintion[1],"properties")
 	fmt.Println("================================")
@@ -198,7 +196,7 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 
 		fmt.Println("================================")
 
-		tmpProperty := Property{Name:string(lname), Type:ltype.(string), Format:lFormat.(string), Items:lItems, Enum:lEnum,Refs:lRefs.(string), Default:lDefault.(bool)}
+		tmpProperty := Property{Name:string(lname), Type:ltype.(string), Format:lFormat.(string), Items:lItems, Enum:lEnum,Refs:lRefs.(string),AdditionalProperties:lAddProps, Default:lDefault.(bool)}
 
 		vardef.Indprop = append(vardef.Indprop, tmpProperty)
 

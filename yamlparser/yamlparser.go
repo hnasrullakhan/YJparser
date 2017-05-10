@@ -9,7 +9,7 @@ import (
 type Model struct{
 	Source_dir string
 	Package string
-	Objects	[]OBJECTS
+	Objects	[]*OBJECTS
 	//Apitypes []OBJECTS
 }
 
