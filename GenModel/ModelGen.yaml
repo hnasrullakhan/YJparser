@@ -68,15 +68,7 @@ model:
             - name: POST
             - name: DELETE
           properties:
-            - name: setApiVersion
-              type: boolean
-              apiaccess: readonly
-          
-            - name: setInstanceUuid
-              type: boolean
-              apiaccess: readonly
-          
-            - name: productVersion
+            - name: instanceUuid
               type: string
               apiaccess: readonly
           
@@ -92,44 +84,8 @@ model:
               type: string
               apiaccess: readonly
           
-            - name: displayVersion
-              type: string
-              apiaccess: readonly
-          
-            - name: setSerialNumber
+            - name: setInstanceUuid
               type: boolean
-              apiaccess: readonly
-          
-            - name: setBuild
-              type: boolean
-              apiaccess: readonly
-          
-            - name: apiVersion
-              type: string
-              apiaccess: readonly
-          
-            - name: setDisplayVersion
-              type: boolean
-              apiaccess: readonly
-          
-            - name: setPid
-              type: boolean
-              apiaccess: readonly
-          
-            - name: setLocale
-              type: boolean
-              apiaccess: readonly
-          
-            - name: name
-              type: string
-              apiaccess: readonly
-          
-            - name: fullName
-              type: string
-              apiaccess: readonly
-          
-            - name: serviceType
-              type: string
               apiaccess: readonly
           
             - name: setProductVersion
@@ -148,7 +104,55 @@ model:
               type: boolean
               apiaccess: readonly
           
+            - name: setServiceType
+              type: boolean
+              apiaccess: readonly
+          
+            - name: productVersion
+              type: string
+              apiaccess: readonly
+          
+            - name: serviceType
+              type: string
+              apiaccess: readonly
+          
+            - name: setSerialNumber
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setLocale
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setDisplayVersion
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setPid
+              type: boolean
+              apiaccess: readonly
+          
+            - name: name
+              type: string
+              apiaccess: readonly
+          
+            - name: setBuild
+              type: boolean
+              apiaccess: readonly
+          
+            - name: apiVersion
+              type: string
+              apiaccess: readonly
+          
             - name: modelNumber
+              type: string
+              apiaccess: readonly
+          
+            - name: fullName
+              type: string
+              apiaccess: readonly
+          
+            - name: displayVersion
               type: string
               apiaccess: readonly
           
@@ -156,12 +160,8 @@ model:
               type: string
               apiaccess: readonly
           
-            - name: setServiceType
+            - name: setApiVersion
               type: boolean
-              apiaccess: readonly
-          
-            - name: instanceUuid
-              type: string
               apiaccess: readonly
           
       
@@ -173,62 +173,6 @@ model:
             - name: DELETE
           properties:
       
-        - name: StPlatformClusterResiliencyInfo
-          concrete: yes
-          apimethods:
-            - name: GET
-            - name: POST
-            - name: DELETE
-          properties:
-            - name: setHddFailuresTolerable
-              type: boolean
-              apiaccess: readonly
-          
-            - name: messagesSize
-              type: integer
-              apiaccess: readonly
-          
-            - name: messagesIterator
-              type: IteratorString
-              apiaccess: readonly
-          
-            - name: setMessages
-              type: boolean
-              apiaccess: readonly
-          
-            - name: state
-              type: string
-              apiaccess: readonly
-          
-            - name: ssdFailuresTolerable
-              type: integer
-              apiaccess: readonly
-          
-            - name: messages
-              type: Collection(string)
-              apiaccess: readonly
-          
-            - name: setState
-              type: boolean
-              apiaccess: readonly
-          
-            - name: setNodeFailuresTolerable
-              type: boolean
-              apiaccess: readonly
-          
-            - name: setSsdFailuresTolerable
-              type: boolean
-              apiaccess: readonly
-          
-            - name: nodeFailuresTolerable
-              type: integer
-              apiaccess: readonly
-          
-            - name: hddFailuresTolerable
-              type: integer
-              apiaccess: readonly
-          
-      
         - name: StPlatformClusterHealingInfo
           concrete: yes
           apimethods:
@@ -236,35 +180,23 @@ model:
             - name: POST
             - name: DELETE
           properties:
-            - name: messagesIterator
-              type: IteratorString
-              apiaccess: readonly
-          
-            - name: setMessages
+            - name: setInProgress
               type: boolean
-              apiaccess: readonly
-          
-            - name: setEstimatedCompletionTimeInSeconds
-              type: boolean
-              apiaccess: readonly
-          
-            - name: percentComplete
-              type: integer
               apiaccess: readonly
           
             - name: messagesSize
               type: integer
               apiaccess: readonly
           
-            - name: messages
-              type: Collection(string)
-              apiaccess: readonly
-          
-            - name: setInProgress
+            - name: setEstimatedCompletionTimeInSeconds
               type: boolean
               apiaccess: readonly
           
             - name: setPercentComplete
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setMessages
               type: boolean
               apiaccess: readonly
           
@@ -276,6 +208,74 @@ model:
               type: integer
               apiaccess: readonly
           
+            - name: percentComplete
+              type: integer
+              apiaccess: readonly
+          
+            - name: messages
+              type: Collection(string)
+              apiaccess: readonly
+          
+            - name: messagesIterator
+              type: IteratorString
+              apiaccess: readonly
+          
+      
+        - name: StPlatformClusterResiliencyInfo
+          concrete: yes
+          apimethods:
+            - name: GET
+            - name: POST
+            - name: DELETE
+          properties:
+            - name: setNodeFailuresTolerable
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setSsdFailuresTolerable
+              type: boolean
+              apiaccess: readonly
+          
+            - name: messagesIterator
+              type: IteratorString
+              apiaccess: readonly
+          
+            - name: setMessages
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setState
+              type: boolean
+              apiaccess: readonly
+          
+            - name: nodeFailuresTolerable
+              type: integer
+              apiaccess: readonly
+          
+            - name: ssdFailuresTolerable
+              type: integer
+              apiaccess: readonly
+          
+            - name: hddFailuresTolerable
+              type: integer
+              apiaccess: readonly
+          
+            - name: messages
+              type: Collection(string)
+              apiaccess: readonly
+          
+            - name: setHddFailuresTolerable
+              type: boolean
+              apiaccess: readonly
+          
+            - name: messagesSize
+              type: integer
+              apiaccess: readonly
+          
+            - name: state
+              type: string
+              apiaccess: readonly
+          
       
         - name: Summary
           concrete: yes
@@ -284,99 +284,51 @@ model:
             - name: POST
             - name: DELETE
           properties:
-            - name: setUptime
-              type: boolean
+            - name: state
+              type: string
               apiaccess: readonly
           
-            - name: freeCapacity
-              type: integer
+            - name: uptime
+              type: string
               apiaccess: readonly
           
-            - name: deduplicationSavings
-              type: number
-              apiaccess: readonly
-          
-            - name: setDataReplicationCompliance
-              type: boolean
-              apiaccess: readonly
-          
-            - name: setClusterAccessPolicy
-              type: boolean
+            - name: healingInfo
+              type: Collection(StPlatformClusterHealingInfo)
               apiaccess: readonly
           
             - name: setState
               type: boolean
               apiaccess: readonly
           
-            - name: setDowntime
-              type: boolean
-              apiaccess: readonly
-          
-            - name: state
-              type: string
-              apiaccess: readonly
-          
-            - name: totalSavings
-              type: number
-              apiaccess: readonly
-          
-            - name: activeNodes
-              type: string
-              apiaccess: readonly
-          
-            - name: downtime
-              type: string
-              apiaccess: readonly
-          
-            - name: usedCapacity
+            - name: resiliencyDetailsSize
               type: integer
-              apiaccess: readonly
-          
-            - name: setCompressionSavings
-              type: boolean
               apiaccess: readonly
           
             - name: setFreeCapacity
               type: boolean
               apiaccess: readonly
           
-            - name: setAddress
-              type: boolean
+            - name: dataReplicationCompliance
+              type: string
               apiaccess: readonly
           
-            - name: setDataReplicationFactor
-              type: boolean
-              apiaccess: readonly
-          
-            - name: setUsedCapacity
-              type: boolean
-              apiaccess: readonly
-          
-            - name: setActiveNodes
-              type: boolean
-              apiaccess: readonly
-          
-            - name: boottime
-              type: integer
-              apiaccess: readonly
-          
-            - name: compressionSavings
+            - name: deduplicationSavings
               type: number
               apiaccess: readonly
           
-            - name: resiliencyDetails
-              type: string
+            - name: totalSavings
+              type: number
               apiaccess: readonly
           
             - name: setSpaceStatus
               type: boolean
               apiaccess: readonly
           
-            - name: name
-              type: string
+            - name: setTotalCapacity
+              type: boolean
               apiaccess: readonly
           
-            - name: setTotalCapacity
+            - name: setTotalSavings
               type: boolean
               apiaccess: readonly
           
@@ -384,16 +336,72 @@ model:
               type: boolean
               apiaccess: readonly
           
-            - name: setHealingInfo
-              type: boolean
+            - name: dataReplicationFactor
+              type: string
+              apiaccess: readonly
+          
+            - name: spaceStatus
+              type: string
               apiaccess: readonly
           
             - name: resiliencyInfo
               type: Collection(StPlatformClusterResiliencyInfo)
               apiaccess: readonly
           
-            - name: healingInfo
-              type: Collection(StPlatformClusterHealingInfo)
+            - name: setCompressionSavings
+              type: boolean
+              apiaccess: readonly
+          
+            - name: totalCapacity
+              type: integer
+              apiaccess: readonly
+          
+            - name: setActiveNodes
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setUptime
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setDowntime
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setUsedCapacity
+              type: boolean
+              apiaccess: readonly
+          
+            - name: name
+              type: string
+              apiaccess: readonly
+          
+            - name: boottime
+              type: integer
+              apiaccess: readonly
+          
+            - name: freeCapacity
+              type: integer
+              apiaccess: readonly
+          
+            - name: resiliencyDetails
+              type: string
+              apiaccess: readonly
+          
+            - name: downtime
+              type: string
+              apiaccess: readonly
+          
+            - name: setDataReplicationFactor
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setClusterAccessPolicy
+              type: boolean
+              apiaccess: readonly
+          
+            - name: compressionSavings
+              type: number
               apiaccess: readonly
           
             - name: setName
@@ -404,11 +412,19 @@ model:
               type: boolean
               apiaccess: readonly
           
-            - name: setDeduplicationSavings
+            - name: setHealingInfo
               type: boolean
               apiaccess: readonly
           
-            - name: setTotalSavings
+            - name: usedCapacity
+              type: integer
+              apiaccess: readonly
+          
+            - name: address
+              type: string
+              apiaccess: readonly
+          
+            - name: setDeduplicationSavings
               type: boolean
               apiaccess: readonly
           
@@ -416,36 +432,20 @@ model:
               type: string
               apiaccess: readonly
           
-            - name: dataReplicationFactor
+            - name: activeNodes
               type: string
               apiaccess: readonly
           
-            - name: dataReplicationCompliance
-              type: string
+            - name: setDataReplicationCompliance
+              type: boolean
               apiaccess: readonly
           
-            - name: address
-              type: string
+            - name: setAddress
+              type: boolean
               apiaccess: readonly
           
             - name: setResiliencyInfo
               type: boolean
-              apiaccess: readonly
-          
-            - name: spaceStatus
-              type: string
-              apiaccess: readonly
-          
-            - name: totalCapacity
-              type: integer
-              apiaccess: readonly
-          
-            - name: uptime
-              type: string
-              apiaccess: readonly
-          
-            - name: resiliencyDetailsSize
-              type: integer
               apiaccess: readonly
           
       

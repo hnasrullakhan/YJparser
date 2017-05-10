@@ -20,10 +20,14 @@ type OBJECTS struct {
 }
 
 
-func ParseYaml(mod *Model) {
+func ParseYaml(mod *Model) bool {
 	filePath := "./hx.yaml";
 	fmt.Printf( "// reading file %s\n", filePath )
 	file, err1 := ioutil.ReadFile( filePath )
+	if _, err := os.Stat(filePath); os.IsNotExist(err) {
+		fmt.Println("Meta Model file doesnt exist:",filePath)
+		return false
+	}
 	if err1 != nil {
 		fmt.Printf( "// error while reading file %s\n", filePath )
 		fmt.Printf("File error: %v\n", err1)
@@ -47,9 +51,6 @@ func ParseYaml(mod *Model) {
 		fmt.Printf( "The Target name %s \n", mod.Objects[k].TargetName);
 		fmt.Printf( "The Target name %s \n", mod.Objects[k].Usage);
 	}
-	/*for k := range mod.Apitypes {
-		fmt.Printf( "The Source name %s \n", mod.Apitypes[k].SourceName);
-		fmt.Printf( "The Target name %s \n", mod.Apitypes[k].TargetName);
-		fmt.Printf( "The Target name %s \n", mod.Apitypes[k].Usage);
-	}*/
+	return true
+
 }

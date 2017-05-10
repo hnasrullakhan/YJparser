@@ -112,18 +112,6 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 				}
 				if keyItem == "$ref"{
 					parsedRefName := HandleRefs(valItem.(string),vardef.Name,vardef.Usage)
-/*
-					defintion := strings.SplitAfter((valItem.(string)), "#/definitions/")
-					fmt.Println(defintion[1])
-					//fmt.Printf( "The defintion %s \n", (swag.Definitions));
-					def, _, _, _ := jsonparser.Get(Swag.Definitions, defintion[1])
-					if defintion[1] == vardef.Name {
-						fmt.Println("This will cause loop")
-						return
-					}
-					fmt.Println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxTHISISCHILDxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-
-					ParseDefintions(defintion[1],def,defintion[1])*/
 					if ltype == "array"{
 						ltype = "Collection("+parsedRefName+")"
 					}else{
@@ -146,19 +134,6 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 		lRefs := val.(map[string]interface{})["$ref"]
 		if lRefs != nil {
 			parsedRefName := HandleRefs(lRefs.(string),vardef.Name,vardef.Usage)
-
-			/*defintion := strings.SplitAfter((lRefs).(string), "#/definitions/")
-			fmt.Println(defintion[1])
-			//fmt.Printf( "The defintion %s \n", (swag.Definitions));
-			def, _, _, _ := jsonparser.Get(Swag.Definitions, defintion[1])
-			if defintion[1] == vardef.Name {
-				fmt.Println("This will cause loop")
-				return
-			}
-			fmt.Println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxTHISISCHILDxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-
-			ParseDefintions(defintion[1],def,defintion[1])
-			ltype = defintion[1]*/
 			ltype = parsedRefName
 
 		}else{
@@ -181,14 +156,6 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 					for k,v := range (valItem).(map[string]interface{}) {
 						if k == "$ref"{
 							parsedRefName := HandleRefs(v.(string),vardef.Name,vardef.Usage)
-/*
-							defintion := strings.SplitAfter((v.(string)), "#/definitions/")
-							def, _, _, _ := jsonparser.Get(Swag.Definitions, defintion[1])
-							if defintion[1] == vardef.Name {
-								fmt.Println("This will cause loop")
-								return
-							}
-							ParseDefintions(defintion[1],def,defintion[1])*/
 
 							if tmpAddType == "array"{
 								tmpAddType = "Collection("+parsedRefName+")"
@@ -202,19 +169,7 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 				}
 				if keyItem == "$ref"{
 					parsedRefName := HandleRefs(valItem.(string),vardef.Name,vardef.Usage)
-/*
-					defintion := strings.SplitAfter((valItem.(string)), "#/definitions/")
-					fmt.Println(defintion[1])
-					//fmt.Printf( "The defintion %s \n", (swag.Definitions));
-					def, _, _, _ := jsonparser.Get(Swag.Definitions, defintion[1])
-					if defintion[1] == vardef.Name {
-						fmt.Println("This will cause loop")
-						return
-					}
-					fmt.Println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxTHISISCHILDxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 
-					ParseDefintions(defintion[1],def,defintion[1])
-					*/
 					if tmpAddType == "array"{
 						tmpAddType = "Collection("+parsedRefName+")"
 					}else{
@@ -324,7 +279,10 @@ func main() {
 	filePath := "./swagger_webapp.json";
 	fmt.Printf( "// reading file %s\n", filePath )
 	file, err1 := ioutil.ReadFile( filePath )
-
+	if _, err := os.Stat(filePath); os.IsNotExist(err) {
+		fmt.Println("Swagger Specfile doesnt exist:",filePath)
+		return
+	}
 	// parsing Yaml to populate structures
 	if err1 != nil {
 		fmt.Printf( "// error while reading file %s\n", filePath )
@@ -335,42 +293,43 @@ func main() {
 	fmt.Printf("this is swag value : %s \n",Swag.SwagVersion)
 	fmt.Println("================================")
 	meta := yamlparser.Model{}
-	yamlparser.ParseYaml(&meta)
-	Swag.Package = meta.Package
-	Swag.ObjectsFlag = false
-	Swag.ApiTypeFlag = false
-	fmt.Println(meta)
-	for i := range meta.Objects {
-		fmt.Println(string(meta.Objects[i].SourceName))
+	lMetaExist := yamlparser.ParseYaml(&meta)
+	if (lMetaExist){
 
-		v, _, _, _ := jsonparser.Get(Swag.Paths, "/" + meta.Objects[i].SourceName, "get", "responses", "200", "schema", "$ref")
-		if string(v) == "" {
-			it, _, _, _ := jsonparser.Get(Swag.Paths, "/" + meta.Objects[i].SourceName, "get", "responses", "200", "schema", "type")
-			if string(it) == "array"{
+		Swag.Package = meta.Package
+		Swag.ObjectsFlag = false
+		Swag.ApiTypeFlag = false
+		fmt.Println(meta)
+		for i := range meta.Objects {
+			fmt.Println(string(meta.Objects[i].SourceName))
 
-				v, _, _, _ = jsonparser.Get(Swag.Paths, "/" + meta.Objects[i].SourceName, "get", "responses", "200", "schema", "items","$ref")
+			v, _, _, _ := jsonparser.Get(Swag.Paths, "/" + meta.Objects[i].SourceName, "get", "responses", "200", "schema", "$ref")
+			if string(v) == "" {
+				it, _, _, _ := jsonparser.Get(Swag.Paths, "/" + meta.Objects[i].SourceName, "get", "responses", "200", "schema", "type")
+				if string(it) == "array"{
+
+					v, _, _, _ = jsonparser.Get(Swag.Paths, "/" + meta.Objects[i].SourceName, "get", "responses", "200", "schema", "items","$ref")
+				}
 			}
+			fmt.Printf("%s\n", string(v))
+			fmt.Println("================================")
+			defintion := strings.SplitAfter(string(v), "#/definitions/")
+			fmt.Println(defintion[1])
+			def, _, _, _ := jsonparser.Get(Swag.Definitions, defintion[1])
+			switch meta.Objects[i].Usage {
+			case "mo":
+				Swag.ObjectsFlag = true
+			case "type":
+				Swag.ApiTypeFlag = true
+			}
+
+
+			ParseDefintions(defintion[1],def,meta.Objects[i].TargetName,meta.Objects[i].Usage)
+
+
 		}
-		fmt.Printf("%s\n", string(v))
-		fmt.Println("================================")
-		defintion := strings.SplitAfter(string(v), "#/definitions/")
-		fmt.Println(defintion[1])
-		def, _, _, _ := jsonparser.Get(Swag.Definitions, defintion[1])
-		switch meta.Objects[i].Usage {
-		case "mo":
-			Swag.ObjectsFlag = true
-		case "type":
-			Swag.ApiTypeFlag = true
-		}
-		fmt.Println("object flag :", Swag.ObjectsFlag)
-		fmt.Println("api flag :", Swag.ApiTypeFlag)
-
-
-		ParseDefintions(defintion[1],def,meta.Objects[i].TargetName,meta.Objects[i].Usage)
-
-
+		generateModel(Swag)
 	}
-	generateModel(Swag)
 	fmt.Print(err2)
 
 
