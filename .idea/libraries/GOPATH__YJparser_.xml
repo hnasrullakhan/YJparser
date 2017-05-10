@@ -2,20 +2,20 @@
   <library name="GOPATH &lt;YJparser&gt;">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../nasr" />
-      <root url="file://$PROJECT_DIR$/../.glide" />
       <root url="file://$PROJECT_DIR$/../gopkg.in" />
       <root url="file://$PROJECT_DIR$/../golang.org" />
       <root url="file://$PROJECT_DIR$/../bitbucket-eng-sjc1.cisco.com" />
       <root url="file://$PROJECT_DIR$/../github.com" />
+      <root url="file://$PROJECT_DIR$/../.glide" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="file://$PROJECT_DIR$/../nasr" />
-      <root url="file://$PROJECT_DIR$/../.glide" />
       <root url="file://$PROJECT_DIR$/../gopkg.in" />
       <root url="file://$PROJECT_DIR$/../golang.org" />
       <root url="file://$PROJECT_DIR$/../bitbucket-eng-sjc1.cisco.com" />
       <root url="file://$PROJECT_DIR$/../github.com" />
+      <root url="file://$PROJECT_DIR$/../.glide" />
     </SOURCES>
     <excluded>
       <root url="file://$PROJECT_DIR$" />

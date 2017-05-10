@@ -1,5 +1,13 @@
 ---
 source_dir: swagger-webapp.yaml
-relationships:
-  - name: about
-  - name: summary
+package: HyperFlex
+objects:
+  - sourceName: about
+    targetName: About
+    usage: type
+  - sourceName: virtplatform/alarms
+    targetName: Alarm
+    usage: mo
+  - sourceName: summary
+    targetName: Summary
+    usage: type

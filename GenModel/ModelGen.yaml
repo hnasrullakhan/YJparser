@@ -1,406 +1,452 @@
 ---
 model:
   packages:
-    - name: AboutInfo
-      concrete: yes
-      apimethods:
-        - name: GET
-        - name: POST
-        - name: DELETE
-      properties:
-        - name: serialNumber
-          type: string
-          apiaccess: readonly
-       
-        - name: locale
-          type: string
-          apiaccess: readonly
-       
-        - name: setSerialNumber
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setName
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setBuild
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setDisplayVersion
-          type: boolean
-          apiaccess: readonly
-       
-        - name: instanceUuid
-          type: string
-          apiaccess: readonly
-       
-        - name: apiVersion
-          type: string
-          apiaccess: readonly
-       
-        - name: setInstanceUuid
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setApiVersion
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setPid
-          type: boolean
-          apiaccess: readonly
-       
-        - name: displayVersion
-          type: string
-          apiaccess: readonly
-       
-        - name: pid
-          type: string
-          apiaccess: readonly
-       
-        - name: fullName
-          type: string
-          apiaccess: readonly
-       
-        - name: setProductVersion
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setModelNumber
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setFullName
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setServiceType
-          type: boolean
-          apiaccess: readonly
-       
-        - name: productVersion
-          type: string
-          apiaccess: readonly
-       
-        - name: modelNumber
-          type: string
-          apiaccess: readonly
-       
-        - name: serviceType
-          type: string
-          apiaccess: readonly
-       
-        - name: setLocale
-          type: boolean
-          apiaccess: readonly
-       
-        - name: name
-          type: string
-          apiaccess: readonly
-       
-        - name: build
-          type: string
-          apiaccess: readonly
-       
-
-    
-    - name: IteratorString
-      concrete: yes
-      apimethods:
-        - name: GET
-        - name: POST
-        - name: DELETE
-      properties:
-
-    
-    - name: StPlatformClusterResiliencyInfo
-      concrete: yes
-      apimethods:
-        - name: GET
-        - name: POST
-        - name: DELETE
-      properties:
-        - name: nodeFailuresTolerable
-          type: integer
-          apiaccess: readonly
-       
-        - name: hddFailuresTolerable
-          type: integer
-          apiaccess: readonly
-       
-        - name: messages
-          type: array
-          apiaccess: readonly
-       
-        - name: setNodeFailuresTolerable
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setSsdFailuresTolerable
-          type: boolean
-          apiaccess: readonly
-       
-        - name: messagesIterator
-          type: 
-          apiaccess: readonly
-       
-        - name: state
-          type: string
-          apiaccess: readonly
-       
-        - name: ssdFailuresTolerable
-          type: integer
-          apiaccess: readonly
-       
-        - name: setState
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setHddFailuresTolerable
-          type: boolean
-          apiaccess: readonly
-       
-        - name: messagesSize
-          type: integer
-          apiaccess: readonly
-       
-        - name: setMessages
-          type: boolean
-          apiaccess: readonly
-       
-
-    
-    - name: IteratorString
-      concrete: yes
-      apimethods:
-        - name: GET
-        - name: POST
-        - name: DELETE
-      properties:
-
-    
-    - name: StPlatformClusterHealingInfo
-      concrete: yes
-      apimethods:
-        - name: GET
-        - name: POST
-        - name: DELETE
-      properties:
-        - name: estimatedCompletionTimeInSeconds
-          type: integer
-          apiaccess: readonly
-       
-        - name: percentComplete
-          type: integer
-          apiaccess: readonly
-       
-        - name: messages
-          type: array
-          apiaccess: readonly
-       
-        - name: messagesSize
-          type: integer
-          apiaccess: readonly
-       
-        - name: messagesIterator
-          type: 
-          apiaccess: readonly
-       
-        - name: setMessages
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setPercentComplete
-          type: boolean
-          apiaccess: readonly
-       
-        - name: inProgress
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setInProgress
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setEstimatedCompletionTimeInSeconds
-          type: boolean
-          apiaccess: readonly
-       
-
-    
-    - name: StClusterSummary
-      concrete: yes
-      apimethods:
-        - name: GET
-        - name: POST
-        - name: DELETE
-      properties:
-        - name: name
-          type: string
-          apiaccess: readonly
-       
-        - name: state
-          type: string
-          apiaccess: readonly
-       
-        - name: compressionSavings
-          type: number
-          apiaccess: readonly
-       
-        - name: setDataReplicationCompliance
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setTotalCapacity
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setTotalSavings
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setDowntime
-          type: boolean
-          apiaccess: readonly
-       
-        - name: clusterAccessPolicy
-          type: string
-          apiaccess: readonly
-       
-        - name: dataReplicationFactor
-          type: string
-          apiaccess: readonly
-       
-        - name: dataReplicationCompliance
-          type: string
-          apiaccess: readonly
-       
-        - name: freeCapacity
-          type: integer
-          apiaccess: readonly
-       
-        - name: setSpaceStatus
-          type: boolean
-          apiaccess: readonly
-       
-        - name: resiliencyDetailsSize
-          type: integer
-          apiaccess: readonly
-       
-        - name: resiliencyInfo
-          type: 
-          apiaccess: readonly
-       
-        - name: setAddress
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setResiliencyDetails
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setResiliencyInfo
-          type: boolean
-          apiaccess: readonly
-       
-        - name: boottime
-          type: integer
-          apiaccess: readonly
-       
-        - name: usedCapacity
-          type: integer
-          apiaccess: readonly
-       
-        - name: activeNodes
-          type: string
-          apiaccess: readonly
-       
-        - name: healingInfo
-          type: 
-          apiaccess: readonly
-       
-        - name: setCompressionSavings
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setUptime
-          type: boolean
-          apiaccess: readonly
-       
-        - name: spaceStatus
-          type: string
-          apiaccess: readonly
-       
-        - name: uptime
-          type: string
-          apiaccess: readonly
-       
-        - name: setDeduplicationSavings
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setDataReplicationFactor
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setBoottime
-          type: boolean
-          apiaccess: readonly
-       
-        - name: downtime
-          type: string
-          apiaccess: readonly
-       
-        - name: setName
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setState
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setClusterAccessPolicy
-          type: boolean
-          apiaccess: readonly
-       
-        - name: totalCapacity
-          type: integer
-          apiaccess: readonly
-       
-        - name: deduplicationSavings
-          type: number
-          apiaccess: readonly
-       
-        - name: resiliencyDetails
-          type: object
-          apiaccess: readonly
-       
-        - name: setUsedCapacity
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setHealingInfo
-          type: boolean
-          apiaccess: readonly
-       
-        - name: totalSavings
-          type: number
-          apiaccess: readonly
-       
-        - name: address
-          type: string
-          apiaccess: readonly
-       
-        - name: setFreeCapacity
-          type: boolean
-          apiaccess: readonly
-       
-        - name: setActiveNodes
-          type: boolean
-          apiaccess: readonly
-       
-
-    
-
+    - name: HyperFlex
+      objects:
+      
+        - name: StringStringPair
+          concrete: yes
+          apimethods:
+            - name: GET
+            - name: POST
+            - name: DELETE
+          properties:
+            - name: first
+              type: string
+              apiaccess: readonly
+          
+            - name: second
+              type: string
+              apiaccess: readonly
+          
+      
+        - name: Alarm
+          concrete: yes
+          apimethods:
+            - name: GET
+            - name: POST
+            - name: DELETE
+          properties:
+            - name: description
+              type: string
+              apiaccess: readonly
+          
+            - name: status
+              type: string
+              apiaccess: readonly
+          
+            - name: mor
+              type: StringStringPair
+              apiaccess: readonly
+          
+            - name: entity
+              type: StringStringPair
+              apiaccess: readonly
+          
+            - name: key
+              type: string
+              apiaccess: readonly
+          
+            - name: triggeredTime
+              type: string
+              apiaccess: readonly
+          
+            - name: acknowledged
+              type: boolean
+              apiaccess: readonly
+          
+            - name: entityName
+              type: string
+              apiaccess: readonly
+          
+      
+      apitypes:
+      
+        - name: About
+          concrete: yes
+          apimethods:
+            - name: GET
+            - name: POST
+            - name: DELETE
+          properties:
+            - name: productVersion
+              type: string
+              apiaccess: readonly
+          
+            - name: modelNumber
+              type: string
+              apiaccess: readonly
+          
+            - name: serialNumber
+              type: string
+              apiaccess: readonly
+          
+            - name: setModelNumber
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setName
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setFullName
+              type: boolean
+              apiaccess: readonly
+          
+            - name: apiVersion
+              type: string
+              apiaccess: readonly
+          
+            - name: serviceType
+              type: string
+              apiaccess: readonly
+          
+            - name: displayVersion
+              type: string
+              apiaccess: readonly
+          
+            - name: pid
+              type: string
+              apiaccess: readonly
+          
+            - name: setApiVersion
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setProductVersion
+              type: boolean
+              apiaccess: readonly
+          
+            - name: instanceUuid
+              type: string
+              apiaccess: readonly
+          
+            - name: fullName
+              type: string
+              apiaccess: readonly
+          
+            - name: build
+              type: string
+              apiaccess: readonly
+          
+            - name: setInstanceUuid
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setDisplayVersion
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setPid
+              type: boolean
+              apiaccess: readonly
+          
+            - name: name
+              type: string
+              apiaccess: readonly
+          
+            - name: locale
+              type: string
+              apiaccess: readonly
+          
+            - name: setSerialNumber
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setBuild
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setLocale
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setServiceType
+              type: boolean
+              apiaccess: readonly
+          
+      
+        - name: IteratorString
+          concrete: yes
+          apimethods:
+            - name: GET
+            - name: POST
+            - name: DELETE
+          properties:
+      
+        - name: StPlatformClusterResiliencyInfo
+          concrete: yes
+          apimethods:
+            - name: GET
+            - name: POST
+            - name: DELETE
+          properties:
+            - name: messagesSize
+              type: integer
+              apiaccess: readonly
+          
+            - name: messagesIterator
+              type: IteratorString
+              apiaccess: readonly
+          
+            - name: setMessages
+              type: boolean
+              apiaccess: readonly
+          
+            - name: ssdFailuresTolerable
+              type: integer
+              apiaccess: readonly
+          
+            - name: messages
+              type: Collection(string)
+              apiaccess: readonly
+          
+            - name: setState
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setNodeFailuresTolerable
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setSsdFailuresTolerable
+              type: boolean
+              apiaccess: readonly
+          
+            - name: state
+              type: string
+              apiaccess: readonly
+          
+            - name: nodeFailuresTolerable
+              type: integer
+              apiaccess: readonly
+          
+            - name: hddFailuresTolerable
+              type: integer
+              apiaccess: readonly
+          
+            - name: setHddFailuresTolerable
+              type: boolean
+              apiaccess: readonly
+          
+      
+        - name: StPlatformClusterHealingInfo
+          concrete: yes
+          apimethods:
+            - name: GET
+            - name: POST
+            - name: DELETE
+          properties:
+            - name: messages
+              type: Collection(string)
+              apiaccess: readonly
+          
+            - name: setMessages
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setPercentComplete
+              type: boolean
+              apiaccess: readonly
+          
+            - name: inProgress
+              type: boolean
+              apiaccess: readonly
+          
+            - name: estimatedCompletionTimeInSeconds
+              type: integer
+              apiaccess: readonly
+          
+            - name: percentComplete
+              type: integer
+              apiaccess: readonly
+          
+            - name: setEstimatedCompletionTimeInSeconds
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setInProgress
+              type: boolean
+              apiaccess: readonly
+          
+            - name: messagesSize
+              type: integer
+              apiaccess: readonly
+          
+            - name: messagesIterator
+              type: IteratorString
+              apiaccess: readonly
+          
+      
+        - name: Summary
+          concrete: yes
+          apimethods:
+            - name: GET
+            - name: POST
+            - name: DELETE
+          properties:
+            - name: totalSavings
+              type: number
+              apiaccess: readonly
+          
+            - name: resiliencyDetailsSize
+              type: integer
+              apiaccess: readonly
+          
+            - name: setDataReplicationCompliance
+              type: boolean
+              apiaccess: readonly
+          
+            - name: clusterAccessPolicy
+              type: string
+              apiaccess: readonly
+          
+            - name: totalCapacity
+              type: integer
+              apiaccess: readonly
+          
+            - name: compressionSavings
+              type: number
+              apiaccess: readonly
+          
+            - name: activeNodes
+              type: string
+              apiaccess: readonly
+          
+            - name: address
+              type: string
+              apiaccess: readonly
+          
+            - name: resiliencyDetails
+              type: string
+              apiaccess: readonly
+          
+            - name: resiliencyInfo
+              type: Collection(StPlatformClusterResiliencyInfo)
+              apiaccess: readonly
+          
+            - name: setFreeCapacity
+              type: boolean
+              apiaccess: readonly
+          
+            - name: boottime
+              type: integer
+              apiaccess: readonly
+          
+            - name: setName
+              type: boolean
+              apiaccess: readonly
+          
+            - name: dataReplicationCompliance
+              type: string
+              apiaccess: readonly
+          
+            - name: uptime
+              type: string
+              apiaccess: readonly
+          
+            - name: setTotalCapacity
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setBoottime
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setUsedCapacity
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setActiveNodes
+              type: boolean
+              apiaccess: readonly
+          
+            - name: dataReplicationFactor
+              type: string
+              apiaccess: readonly
+          
+            - name: deduplicationSavings
+              type: number
+              apiaccess: readonly
+          
+            - name: downtime
+              type: string
+              apiaccess: readonly
+          
+            - name: setState
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setUptime
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setDowntime
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setHealingInfo
+              type: boolean
+              apiaccess: readonly
+          
+            - name: name
+              type: string
+              apiaccess: readonly
+          
+            - name: state
+              type: string
+              apiaccess: readonly
+          
+            - name: spaceStatus
+              type: string
+              apiaccess: readonly
+          
+            - name: setSpaceStatus
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setDeduplicationSavings
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setTotalSavings
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setResiliencyInfo
+              type: boolean
+              apiaccess: readonly
+          
+            - name: usedCapacity
+              type: integer
+              apiaccess: readonly
+          
+            - name: freeCapacity
+              type: integer
+              apiaccess: readonly
+          
+            - name: healingInfo
+              type: Collection(StPlatformClusterHealingInfo)
+              apiaccess: readonly
+          
+            - name: setDataReplicationFactor
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setResiliencyDetails
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setCompressionSavings
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setAddress
+              type: boolean
+              apiaccess: readonly
+          
+            - name: setClusterAccessPolicy
+              type: boolean
+              apiaccess: readonly
+          
+      

@@ -25,6 +25,7 @@ type Swagger struct{
 var Swag Swagger
 type Definitionsprops struct {
 	Name string
+	Usage string
 	Type string
 	Properties map[string]interface{} `json:"properties"`
 	Indprop []Property
@@ -48,7 +49,7 @@ type AdditionalProps struct{
 	Refs string
 	Items interface{}
 }
-func HandleRefs(aInRefVal string,aInDefName string) string{
+func HandleRefs(aInRefVal string,aInDefName string,usage string) string{
 
 	defintion := strings.SplitAfter(aInRefVal, "#/definitions/")
 	fmt.Println(defintion[1])
@@ -58,11 +59,11 @@ func HandleRefs(aInRefVal string,aInDefName string) string{
 		return defintion[1]
 	}
 
-	ParseDefintions(defintion[1],def,defintion[1])
+	ParseDefintions(defintion[1],def,defintion[1],usage)
 	return defintion[1]
 }
 
-func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetName string){
+func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetName string, usage string){
 
 	var vardef Definitionsprops
 	_ = json.Unmarshal(jsonRawDef, &vardef)
@@ -77,7 +78,7 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 		}
 	}
 	vardef.Name = aInMetaTargetName
-
+	vardef.Usage = usage
 	vardef.Type = "object"
 	fmt.Println(vardef)
 	//v,_,_,_ = jsonparser.Get(swag.Definitions,defintion[1],"properties")
@@ -108,7 +109,7 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 					}
 				}
 				if keyItem == "$ref"{
-					parsedRefName := HandleRefs(valItem.(string),vardef.Name)
+					parsedRefName := HandleRefs(valItem.(string),vardef.Name,vardef.Usage)
 /*
 					defintion := strings.SplitAfter((valItem.(string)), "#/definitions/")
 					fmt.Println(defintion[1])
@@ -142,7 +143,7 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 		}
 		lRefs := val.(map[string]interface{})["$ref"]
 		if lRefs != nil {
-			parsedRefName := HandleRefs(lRefs.(string),vardef.Name)
+			parsedRefName := HandleRefs(lRefs.(string),vardef.Name,vardef.Usage)
 
 			/*defintion := strings.SplitAfter((lRefs).(string), "#/definitions/")
 			fmt.Println(defintion[1])
@@ -177,7 +178,7 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 				if keyItem == "items" {
 					for k,v := range (valItem).(map[string]interface{}) {
 						if k == "$ref"{
-							parsedRefName := HandleRefs(v.(string),vardef.Name)
+							parsedRefName := HandleRefs(v.(string),vardef.Name,vardef.Usage)
 /*
 							defintion := strings.SplitAfter((v.(string)), "#/definitions/")
 							def, _, _, _ := jsonparser.Get(Swag.Definitions, defintion[1])
@@ -198,7 +199,7 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 					}
 				}
 				if keyItem == "$ref"{
-					parsedRefName := HandleRefs(valItem.(string),vardef.Name)
+					parsedRefName := HandleRefs(valItem.(string),vardef.Name,vardef.Usage)
 /*
 					defintion := strings.SplitAfter((valItem.(string)), "#/definitions/")
 					fmt.Println(defintion[1])
@@ -224,6 +225,8 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 				ltype = tmpAddType
 			}
 
+		}else {
+			lAddProps = nil
 		}
 
 		fmt.Println("================================")
@@ -234,7 +237,7 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 		fmt.Println("Enum:", lEnum)
 		fmt.Println("Refs:", lRefs)
 		fmt.Println("Default:", lDefault)
-		//fmt.Println("lAddProps:", tmpAddProps)
+		fmt.Println("lAddProps:", lAddProps)
 
 		fmt.Println("================================")
 
@@ -246,7 +249,7 @@ func ParseDefintions( aInDefintionName string, jsonRawDef []byte, aInMetaTargetN
 
 	Swag.Defs = append(Swag.Defs,&vardef)
 
-	fmt.Println("Function ends here")
+	fmt.Println(Swag.Defs)
 }
 
 const (
@@ -333,15 +336,15 @@ func main() {
 	yamlparser.ParseYaml(&meta)
 	Swag.Package = meta.Package
 	fmt.Println(meta)
-	for i := range meta.Relationships {
-		fmt.Println(string(meta.Relationships[i].SourceName))
+	for i := range meta.Objects {
+		fmt.Println(string(meta.Objects[i].SourceName))
 
-		v, _, _, _ := jsonparser.Get(Swag.Paths, "/" + meta.Relationships[i].SourceName, "get", "responses", "200", "schema", "$ref")
+		v, _, _, _ := jsonparser.Get(Swag.Paths, "/" + meta.Objects[i].SourceName, "get", "responses", "200", "schema", "$ref")
 		if string(v) == "" {
-			it, _, _, _ := jsonparser.Get(Swag.Paths, "/" + meta.Relationships[i].SourceName, "get", "responses", "200", "schema", "type")
+			it, _, _, _ := jsonparser.Get(Swag.Paths, "/" + meta.Objects[i].SourceName, "get", "responses", "200", "schema", "type")
 			if string(it) == "array"{
 
-				v, _, _, _ = jsonparser.Get(Swag.Paths, "/" + meta.Relationships[i].SourceName, "get", "responses", "200", "schema", "items","$ref")
+				v, _, _, _ = jsonparser.Get(Swag.Paths, "/" + meta.Objects[i].SourceName, "get", "responses", "200", "schema", "items","$ref")
 			}
 		}
 		fmt.Printf("%s\n", string(v))
@@ -350,10 +353,31 @@ func main() {
 		fmt.Println(defintion[1])
 		def, _, _, _ := jsonparser.Get(Swag.Definitions, defintion[1])
 
-		ParseDefintions(defintion[1],def,meta.Relationships[i].TargetName)
+		ParseDefintions(defintion[1],def,meta.Objects[i].TargetName,meta.Objects[i].Usage)
 
 
 	}
+/*	for i := range meta.Apitypes {
+		fmt.Println(string(meta.Apitypes[i].SourceName))
+
+		v, _, _, _ := jsonparser.Get(Swag.Paths, "/" + meta.Apitypes[i].SourceName, "get", "responses", "200", "schema", "$ref")
+		if string(v) == "" {
+			it, _, _, _ := jsonparser.Get(Swag.Paths, "/" + meta.Apitypes[i].SourceName, "get", "responses", "200", "schema", "type")
+			if string(it) == "array"{
+
+				v, _, _, _ = jsonparser.Get(Swag.Paths, "/" + meta.Apitypes[i].SourceName, "get", "responses", "200", "schema", "items","$ref")
+			}
+		}
+		fmt.Printf("%s\n", string(v))
+		fmt.Println("================================")
+		defintion := strings.SplitAfter(string(v), "#/definitions/")
+		fmt.Println(defintion[1])
+		def, _, _, _ := jsonparser.Get(Swag.Definitions, defintion[1])
+
+		ParseDefintions(defintion[1],def,meta.Apitypes[i].TargetName,meta.Apitypes[i].Usage)
+
+
+	}*/
 	generateModel(Swag)
 	fmt.Print(err2)
 

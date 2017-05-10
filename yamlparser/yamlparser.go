@@ -9,14 +9,16 @@ import (
 type Model struct{
 	Source_dir string
 	Package string
-	Relationships	[]Relations
+	Objects	[]OBJECTS
+	//Apitypes []OBJECTS
 }
 
-type Relations struct {
+type OBJECTS struct {
 	SourceName string	`yaml:"sourceName"`
 	TargetName string	`yaml:"targetName"`
 	Usage string		`yaml:"usage`
 }
+
 
 func ParseYaml(mod *Model) {
 	filePath := "./hx.yaml";
@@ -40,11 +42,14 @@ func ParseYaml(mod *Model) {
 	fmt.Printf( "The Model '%s\n", mod.Source_dir  );
 	fmt.Printf( "The Package '%s\n", mod.Package  );
 
-	for k := range mod.Relationships {
-		fmt.Printf( "The Source name %s \n", mod.Relationships[k].SourceName);
-		fmt.Printf( "The Target name %s \n", mod.Relationships[k].TargetName);
-		fmt.Printf( "The Target name %s \n", mod.Relationships[k].Usage);
-
-
+	for k := range mod.Objects {
+		fmt.Printf( "The Source name %s \n", mod.Objects[k].SourceName);
+		fmt.Printf( "The Target name %s \n", mod.Objects[k].TargetName);
+		fmt.Printf( "The Target name %s \n", mod.Objects[k].Usage);
 	}
+	/*for k := range mod.Apitypes {
+		fmt.Printf( "The Source name %s \n", mod.Apitypes[k].SourceName);
+		fmt.Printf( "The Target name %s \n", mod.Apitypes[k].TargetName);
+		fmt.Printf( "The Target name %s \n", mod.Apitypes[k].Usage);
+	}*/
 }

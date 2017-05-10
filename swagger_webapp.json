@@ -2411,10 +2411,19 @@
           "type": "string"
         },
         "resiliencyInfo": {
-          "$ref": "#/definitions/StPlatformClusterResiliencyInfo"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StPlatformClusterResiliencyInfo"
+          }
         },
         "healingInfo": {
-          "$ref": "#/definitions/StPlatformClusterHealingInfo"
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/StPlatformClusterHealingInfo"
+            }
+          }
         },
         "setDataReplicationCompliance": {
           "type": "boolean",

@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bf250b2-2ab5-4703-9ed7-015b24f90c9d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/GOPATH__YJparser_.xml" afterPath="$PROJECT_DIR$/.idea/libraries/GOPATH__YJparser_.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GenModel/ModelGen.yaml" afterPath="$PROJECT_DIR$/GenModel/ModelGen.yaml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model.gotmpl" afterPath="$PROJECT_DIR$/Model.gotmpl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hx.yaml" afterPath="$PROJECT_DIR$/hx.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/swagger_webapp.json" afterPath="$PROJECT_DIR$/swagger_webapp.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/swaggerparser.go" afterPath="$PROJECT_DIR$/swaggerparser.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yamlparser/yamlparser.go" afterPath="$PROJECT_DIR$/yamlparser/yamlparser.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,8 +24,8 @@
       <file leaf-file-name="swaggerparser.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/swaggerparser.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="31" column="15" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="15" />
+            <state relative-caret-position="581">
+              <caret line="359" column="2" lean-forward="false" selection-start-line="359" selection-start-column="0" selection-end-line="379" selection-end-column="11" />
               <folding>
                 <element signature="e#14#151#0" expanded="true" />
               </folding>
@@ -29,21 +33,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModelGen.yaml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ModelGen.yaml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GenModel/ModelGen.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="132" column="24" lean-forward="false" selection-start-line="132" selection-start-column="16" selection-end-line="132" selection-end-column="24" />
+            <state relative-caret-position="-383">
+              <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="swagger_webapp.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="swagger_webapp.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/swagger_webapp.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="3764" column="19" lean-forward="false" selection-start-line="3764" selection-start-column="9" selection-end-line="3764" selection-end-column="19" />
+            <state relative-caret-position="-371">
+              <caret line="3804" column="38" lean-forward="false" selection-start-line="3804" selection-start-column="5" selection-end-line="3804" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -52,8 +56,8 @@
       <file leaf-file-name="Model.gotmpl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Model.gotmpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="30" lean-forward="false" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+            <state relative-caret-position="375">
+              <caret line="25" column="8" lean-forward="false" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -62,8 +66,8 @@
       <file leaf-file-name="hx.yaml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hx.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="17" />
+            <state relative-caret-position="45">
+              <caret line="3" column="7" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -72,8 +76,8 @@
       <file leaf-file-name="yamlparser.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yamlparser/yamlparser.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+            <state relative-caret-position="62">
+              <caret line="12" column="10" lean-forward="false" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
               <folding>
                 <element signature="e#20#76#0" expanded="true" />
               </folding>
@@ -85,12 +89,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>definitionsprops</find>
-      <find>================================</find>
-      <find>Panic</find>
-      <find>indprop</find>
+      <find>EntityRef&quot;</find>
+      <find>PhysicalDisk&quot;</find>
+      <find>throwable&quot;:</find>
+      <find>cluster/message</find>
+      <find>EntityRef&quot;:</find>
+      <find>&quot;EntityRef&quot;:</find>
+      <find>/ApplianceDTO&quot;</find>
+      <find>/EntityRef&quot;</find>
+      <find>StClusterCreationProgress</find>
+      <find>target</find>
+      <find>message</find>
+      <find>messagesi</find>
       <find>array</find>
-      <find>messages&quot;:</find>
+      <find>messages</find>
+      <find>StPlatformClusterResiliencyInfo&quot;</find>
+      <find>/StClusterVersionDetails&quot;</find>
+      <find>StClusterVersionDetails&quot;</find>
+      <find>additionalProperties&quot;</find>
+      <find>StPlatformClusterHealingInfo</find>
+      <find>resiliencydetails</find>
+      <find>additionalPr</find>
+      <find>DynamicProperty&quot;</find>
+      <find>DynamicProperty&quot;:</find>
+      <find>object</find>
+      <find>IteratorStDisk</find>
+      <find>/AboutInfo</find>
+      <find>virtpla</find>
+      <find>StClusterSummary&quot;:</find>
+      <find>StPlatformClusterResiliencyInfo&quot;:</find>
+      <find>AboutInfo</find>
     </findStrings>
     <replaceStrings>
       <replace>Print</replace>
@@ -109,9 +137,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/yamlparser.go" />
-        <option value="$PROJECT_DIR$/yamlparser/yamlparser.go" />
-        <option value="$PROJECT_DIR$/hx.yaml" />
+        <option value="$PROJECT_DIR$/swagger_webapp.json" />
         <option value="$PROJECT_DIR$/GenModel/ModelGen.yaml" />
+        <option value="$PROJECT_DIR$/hx.yaml" />
+        <option value="$PROJECT_DIR$/yamlparser/yamlparser.go" />
         <option value="$PROJECT_DIR$/swaggerparser.go" />
         <option value="$PROJECT_DIR$/Model.gotmpl" />
       </list>
@@ -141,6 +170,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -163,6 +194,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="yamlparser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="YJparser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="YJparser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="GenModel" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -170,8 +215,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -577,7 +620,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2532189" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25679544" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -590,7 +633,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -601,6 +644,58 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/swaggerparser.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4650">
+          <caret line="321" column="8" lean-forward="false" selection-start-line="321" selection-start-column="0" selection-end-line="322" selection-end-column="0" />
+          <folding>
+            <element signature="e#14#151#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GenModel/ModelGen.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6195">
+          <caret line="413" column="23" lean-forward="false" selection-start-line="413" selection-start-column="23" selection-end-line="413" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model.gotmpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="30" lean-forward="false" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hx.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="27" lean-forward="false" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yamlparser/yamlparser.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+          <folding>
+            <element signature="e#20#76#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/swagger_webapp.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69540">
+          <caret line="4636" column="42" lean-forward="false" selection-start-line="4636" selection-start-column="33" selection-end-line="4636" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/swaggerparser.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -641,62 +736,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/go/src/text/template/exec.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="176" column="19" lean-forward="false" selection-start-line="176" selection-start-column="19" selection-end-line="176" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/swagger_webapp.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-371">
+          <caret line="3804" column="38" lean-forward="false" selection-start-line="3804" selection-start-column="5" selection-end-line="3804" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/yamlparser/yamlparser.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+        <state relative-caret-position="62">
+          <caret line="12" column="10" lean-forward="false" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
           <folding>
             <element signature="e#20#76#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/go/src/text/template/exec.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="176" column="19" lean-forward="false" selection-start-line="176" selection-start-column="19" selection-end-line="176" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hx.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model.gotmpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="30" lean-forward="false" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/swaggerparser.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="31" column="15" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="15" />
+        <state relative-caret-position="581">
+          <caret line="359" column="2" lean-forward="false" selection-start-line="359" selection-start-column="0" selection-end-line="379" selection-end-column="11" />
           <folding>
             <element signature="e#14#151#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GenModel/ModelGen.yaml">
+    <entry file="file://$PROJECT_DIR$/hx.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="132" column="24" lean-forward="false" selection-start-line="132" selection-start-column="16" selection-end-line="132" selection-end-column="24" />
+        <state relative-caret-position="45">
+          <caret line="3" column="7" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/swagger_webapp.json">
+    <entry file="file://$PROJECT_DIR$/Model.gotmpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="3764" column="19" lean-forward="false" selection-start-line="3764" selection-start-column="9" selection-end-line="3764" selection-end-column="19" />
+        <state relative-caret-position="375">
+          <caret line="25" column="8" lean-forward="false" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GenModel/ModelGen.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-383">
+          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
           <folding />
         </state>
       </provider>
